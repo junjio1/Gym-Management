@@ -34,7 +34,7 @@ module.exports = {
         Instructor.find(req.params.id, function(instructor){
             if(!instructor) return res.send("Instructor not found")
             
-            instructor.age = date(instructor.birth).iso
+            instructor.age = age(instructor.birth)
             instructor.services = instructor.services.split(",")
 
             instructor.created_at = date(instructor.created_at).format
