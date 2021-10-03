@@ -34,7 +34,6 @@ module.exports = {
             if(!member) return res.send("member not found")
 
             member.birth = date(member.birth).iso
-            member.created_at = date(member.created_at).format
 
             return res.render(`members/show` , {member})
         })
@@ -42,7 +41,13 @@ module.exports = {
 
     edit(req, res){
 
-        return
+        Member.find(req.params.id ,function(member){
+            if(!member) return res.send("member not found")
+
+            member.birth = date(member.birth).iso
+
+            return res.render(`members/edit` , {member})
+        })
     },
     put(req, res){
 
@@ -51,10 +56,12 @@ module.exports = {
         for (key of keys){
             if (req.body[key] ==""){
                 return res.send(`Please fill all fields` )
-        }
-    }
+                }
+            }
 
-        return
+        Member.update(req.body , function(){
+            return res.redirect(`members/${req.body.id}`)
+        })
     },
     delete(req, res){
 

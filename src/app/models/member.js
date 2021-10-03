@@ -47,11 +47,38 @@ module.exports = {
             callback(results.rows[0])
         })
     },
-    update(){
-        
+    update(data, callback){
+         const query = `
+            UPDATE members SET
+                avatar_url = ($1),
+                name = ($2),
+                email = ($3),
+                gender = ($4),
+                birth = ($5),
+                blood = ($6),
+                weight = ($7),
+                height = ($8)
+            WHERE id = $9
+        ` 
+        const values = [
+            data.avatar_url,
+            data.name,
+            data.email,
+            data.gender,
+            date(data.birth).iso,
+            data.blood,
+            data.weight,
+            data.height,
+            data.id
+        ]
+        db.query(query , values , function(err, results){
+            if(err) throw `Database error ${err}`
+            callback()
+        })
     },
-    delete(){
-        
+    delete(callback){
+
+
     },
 
 }
