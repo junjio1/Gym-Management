@@ -1,12 +1,39 @@
+const { get } = require("browser-sync")
+const { query } = require("../../config/db")
 const { age, date }  = require ("../../lib/utils")
 const Instructor = require("../models/instructor")
 
 module.exports = {
     index(req, res){
+        let { filter, page, limit } = req.query
+        console.log(req.query)
+        page = page || 1
+        limit = limit || 2
+        let offset = limit * (page -1)
 
-        Instructor.all(function(instructors){
-            return res.render('instructors/index', {instructors})
-        })
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(instructors){
+                return res.render('instructors/index', {instructors , filter})
+            }
+        }
+
+        Instructor.paginate(params)
+        
+        // if (filter){
+        //     Instructor.findBy(filter, function(instructors){
+        //          return res.render('instructors/index', {instructors , filter})
+        //     })
+        // }else{
+        //    Instructor.all(function(instructors){
+        //         return res.render('instructors/index', {instructors})
+        //     }) 
+        // }
+        
+        
         
     },
     create(req, res){

@@ -5,6 +5,7 @@ const Member = require("../models/member")
 
 module.exports = {
     index(req, res){
+
         Member.all(function(members){
             return res.render('members/index', {members})
         })
