@@ -28,8 +28,6 @@ module.exports = {
         }
 
         Instructor.paginate(params) 
-
-        console.log(req.query)
         
     },
     create(req, res){
