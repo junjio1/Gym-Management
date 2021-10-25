@@ -8,7 +8,7 @@ for (item of menuItems){
 }
 
 
-function pagination(selectedPages , totalPages){
+function paginate(selectedPages , totalPages){
 
         let pages = [],
             oldPage
@@ -35,3 +35,26 @@ function pagination(selectedPages , totalPages){
         }
     return pages    
 }
+
+const pagination = document.querySelector(".pagination")
+const page = +pagination.dataset.pages;
+const total = +pagination.dataset.total
+
+
+
+// Unary Operator
+// As with Concatenating an Empty String, there is also a 
+// workaround that has better performance but lacks 
+// readability.
+
+// let str = '100';
+// let fltStr = '100.21';
+// let nanStr = 'greetings';
+
+// +str    // 100
+// +fltStr // 100.21
+// +nanStr // NaN
+// +'1000' // 1000
+// +10.25  // 10.25
+// While concise and effective, this isn't a very well-known feature of JavaScript, 
+// so it's not advised to use since it may make your code not as easy to understand.
