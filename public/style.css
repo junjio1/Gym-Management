@@ -238,7 +238,7 @@ tbody tr td:first-child span {
     background-size: cover;
     border-radius: 50%;
     box-shadow: 3px 1px 6px -4px black;
-    border: 1px solid white;
+    border: 2px solid white;
 }
 
 tbody tr td:last-child a,
@@ -269,7 +269,8 @@ td:last-child{
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
-        margin-bottom: 32px;
+        margin-bottom: 0px;
+        align-self: start;
         
 }
 
@@ -293,4 +294,31 @@ td:last-child{
 
 .table-container .header form button {
     margin: 0;
+}
+
+
+/* PAGINATION */
+
+.table-container {
+    display: grid;
+    grid-template: 64px 1fr 48px / 1fr
+}
+
+
+.table-container .pagination {
+    margin: 0;
+    align-self: end;
+    justify-self: center;
+}
+
+.pagination a,
+.pagination span {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-right: 16px;
+}
+
+.pagination a:hover{
+    filter: brightness(0.3);
+    border-bottom: 1px solid var(--primary-color);
 }
