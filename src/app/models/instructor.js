@@ -50,7 +50,6 @@ module.exports = {
     find(id, callback){
         db.query(`SELECT * FROM instructors WHERE id = $1`, [id] , function(err, results){
             if(err) throw `Database erro ${err}`
-
             callback(results.rows[0])
         })
 
